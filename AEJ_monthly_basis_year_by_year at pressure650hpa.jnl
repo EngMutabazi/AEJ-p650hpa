@@ -1,0 +1,953 @@
+SET MEMORY/SIZE = 1000
+  can data /all
+  can win /all
+  set win/new
+
+ SET WINDOW/ASPECT = 0.7/size=2
+
+  let Fig = $1%1%
+
+!=================================================================================
+  
+  If `Fig eq 1` then   !  Plot for 900 hPa at time 0600
+!================================================================================== 
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    4,        0.40,   0.04,   0.02,     0.40,    0.01,   0.09
+
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/ucomponent_pressure900at6:00climatology.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/era_precip_climatology1.nc"                         !d=2
+
+
+set win /aspect=0.9/size=1.5
+
+!**** Set parameter for SHAKEY do_key, orient, klab_size, klab_inc, klab_dig, klab_len, kx_lo,     kx_hi, ky_lo, ky_hi
+        let do_key=1     !    0 if the key will not be displayed, 1 if it will (0)
+        let orient=1       !    0 for horizontal, 1 for vertical (0)
+        let klab_size=0.13  !    if non-zero: height of key label characters in inches (0)
+        let klab_inc=1     !    if non-zero: every klab_ince key level is labelled (0)
+        let klab_dig=2     !    number of sig digits in the key (3)
+        let klab_len=8     !    max characters in a key label (9)
+        let kx_lo=4.7  !    X coord of left side of key in inches
+        let kx_hi=5   !    X coord of right side of key in inches
+        let ky_lo=3   !    Y coord of bottom of key in inches
+        let ky_hi=10 !    Y coord of top of key in inche
+
+set view v11 WINDING PRE
+
+PPL AXLABP,0,-1 
+
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=1, k=1]*1000; go land 7
+contour/over/nolab WINDING[d=1,x=-30:50,y=-40:40,k=1,l=1]  
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.5,3,-10,0,0.20, @TR January
+
+!###################################
+set view v12
+PPL AXLABP,0,0     
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=2, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=2]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,3,-10,0,0.20, @TR February
+
+!##############################
+set view v13
+PPL AXLABP,0,0      
+
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf)  PRE[d=2,x=-30:50,y=-40:40,l=3, k=1]*1000; go land 7
+
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=3]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3,-10,0,0.20, @TR March
+!##############################
+set view v14
+
+PPL AXLABP,0,0      
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=4, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=4]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3,-10,0,0.20, @TR April
+!label/nouser 0.1,2.58,-10,0,0.12, @TR d
+
+!#################################
+set view v21
+
+PPL AXLABP,0,-1     
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=5, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=5]  
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3,-10,0,0.20, @TR May
+!label/nouser -0.6, 0.7, -50, 90, 0.12 @TR 200 hPa
+
+!#################################################
+set view v22
+PPL AXLABP,0,0     
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=6, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=6] 
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3,-10,0,0.20, @TR June
+
+!###############################################
+set view v23
+PPL AXLABP,0,0      
+
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=7, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=7]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3,-10,0,0.20, @TR July
+!################################
+set view v24
+
+PPL AXLABP,0,0      
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=8, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=8]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.8,3,-10,0,0.20, @TR August
+
+!###############################
+
+set view v31
+
+PPL AXLABP,-1,-1     
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=9, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1/LEVELS="(-52,52,1.5) del(0)" WINDING[d=1,x=-30:50,y=-40:40,k=1,l=9]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.5,3,-10,0,0.20, @TR September
+
+!################################
+
+set view v32
+PPL AXLABP,-1,0     
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=10, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1 WINDING[d=1,x=-30:50,y=-40:40,k=1,l=10]  
+label/nouser 0.8,3,-10,0,0.20, @TR October
+
+!##############################
+
+set view v33
+PPL AXLABP,-1,0      
+
+fill/nolab/nokey/pal=rnb2/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=11, k=1]*1000; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1  WINDING[d=1,x=-30:50,y=-40:40,k=1,l=11]
+!LABEL xpos,ypos,center,angle,size text 
+label/nouser 0.5,3,-10,0,0.20, @TR November
+
+!################################
+set view v34
+
+PPL AXLABP,-1,0      
+fill/nolab/nokey/pal=rnb2/set_up/lev=(2,20,1)(inf) PRE[d=2,x=-30:50,y=-40:40,l=12, k=1]*1000
+PPL SHAKEY `do_key`, `orient`, `klab_size`, `klab_inc`, `klab_dig`, `klab_len`,`kx_lo`, `kx_hi`, `ky_lo`, `ky_hi` ;\
+  PPL fill; go land 7
+contour/over/nolab/SIZE=0.14/SPACING=2/col=1  WINDING[d=1,x=-30:50,y=-40:40,k=1,l=12]
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.5,3,-10,0,0.20, @TR December
+label/nouser 3.2,8.8,-10,0,0.15, @TR mm/day
+
+
+
+
+
+
+
+
+
+!=====================================================================================               
+
+ ELIf `Fig eq 2` then  !Plot for 900 hPa at time 0900
+!=====================================================================================
+
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    2,    2,        0.20,      0.04,   0.06,     0.22,    0.4,   0.08
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/uwind_climatology900hPa_tim0600.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/uwind_climatology900hPa_tim0900.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/uwind_climatology925hPa_tim0600.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/uwind_climatology925hPa_tim0900.nc"                !d=4
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 uwnd[d=1,x=-30:35@ave,y=5:20,k=1]
+contour/over/nolab uwnd[d=1,x=-30:35@ave,y=5:20,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.5,3.5,-10,0,0.20, @TR 900hPa at t0600
+
+!###################################
+set view v12
+PPL AXLABP,0,0     
+fill/nolab/pal=rnb2 ua[d=2,x=-30:35@ave,y=5:20,k=1]
+contour/over/nolab ua[d=2,x=-30:35@ave,y=5:20,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,3.5,-10,0,0.20, @TR 900hPa at t0900
+
+!##############################
+set view v21
+PPL AXLABP,-1,-1      
+
+fill/nolab/pal=rnb2 ua[d=3,x=-30:35@ave,y=5:20,k=1]
+contour/over/nolab ua[d=3,x=-30:35@ave,y=5:20,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 1,3.2,-10,0,0.20, @TR 925hPa at t0600
+!##############################
+set view v22
+PPL AXLABP,-1,0      
+fill/nolab/pal=rnb2 ua[d=4,x=-30:35@ave,y=5:20,k=1]
+contour/over/nolab ua[d=4,x=-30:35@ave,y=5:20,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+label/nouser 0.5,3.2,-10,0,0.20, @TR 925hPa at t0900
+label/nouser 3.2,8.8,-10,0,0.15, @TR m/s
+
+
+!=====================================================================================               
+
+!=====================================================================================     
+
+
+
+
+
+  ELIf `Fig eq 3` then  !Plot for 900 hPa at time 0900
+!=====================================================================================
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    3,        0.18,   0.04,   0.07,     0.18,    0.04,   0.06
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1979mean.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1980mean.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1981mean.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1982mean.nc"                !d=4
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1983mean.nc"                 !d=5
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1984mean.nc"               !d=6
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1985mean.nc"               !d=7
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1986mean.nc"               !d=8
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1987mean.nc"               !d=9
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1988mean.nc"               !d=10
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1989mean.nc"               !d=11
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1990mean.nc"               !d=12
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1991mean.nc"               !d=13
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1992mean.nc"               !d=14
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1993mean.nc"               !d=15
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1994mean.nc"               !d=16
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1995mean.nc"               !d=17
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1996mean.nc"               !d=18
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1997mean.nc"               !d=19
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1998mean.nc"               !d=20
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1999mean.nc"               !d=21
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2000mean.nc"               !d=22
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2001mean.nc"               !d=23
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2002mean.nc"               !d=24
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2003mean.nc"               !d=25
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2004mean.nc"               !d=26
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2005mean.nc"               !d=27
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2006mean.nc"               !d=28
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2007mean.nc"               !d=29
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2008mean.nc"               !d=30
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2009mean.nc"               !d=31
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2010mean.nc"               !d=32
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2011mean.nc"               !d=33
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2012mean.nc"               !d=34
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2013mean.nc"               !d=35
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2014mean.nc"               !d=36
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2015mean.nc"               !d=37
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2016mean.nc"               !d=38
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2017mean.nc"               !d=39
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2018mean.nc"               !d=40
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2019mean.nc"               !d=41
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2020mean.nc"               !d=42
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2021mean.nc"               !d=43
+
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+let k1=plot U[d=1,x=-30:50@ave,y=-40:40@ave,k=1];
+let k2=plot u[d=2,x=-30:50@ave,y=-40:40@ave,k=1]  
+IF(k1) THEN S[D=1] ELSE S[D=2]
+
+
+
+
+set view v12
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=2,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=2,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v13
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=3,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=3,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v21
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=4,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=4,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v22
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=5,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=5,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v23
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=6,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=6,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v31
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=7,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=7,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v32
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=8,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=8,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v33
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=9,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=9,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+
+
+
+!=====================================================================================     
+
+
+
+
+
+  ELIf `Fig eq 4` then  !Plot for 900 hPa at time 0900
+!=====================================================================================
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    3,        0.18,   0.04,   0.07,     0.18,    0.04,   0.06
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1979mean.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1980mean.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1981mean.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1982mean.nc"                !d=4
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1983mean.nc"                 !d=5
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1984mean.nc"               !d=6
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1985mean.nc"               !d=7
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1986mean.nc"               !d=8
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1987mean.nc"               !d=9
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1988mean.nc"               !d=10
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1989mean.nc"               !d=11
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1990mean.nc"               !d=12
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1991mean.nc"               !d=13
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1992mean.nc"               !d=14
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1993mean.nc"               !d=15
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1994mean.nc"               !d=16
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1995mean.nc"               !d=17
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1996mean.nc"               !d=18
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1997mean.nc"               !d=19
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1998mean.nc"               !d=20
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1999mean.nc"               !d=21
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2000mean.nc"               !d=22
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2001mean.nc"               !d=23
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2002mean.nc"               !d=24
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2003mean.nc"               !d=25
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2004mean.nc"               !d=26
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2005mean.nc"               !d=27
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2006mean.nc"               !d=28
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2007mean.nc"               !d=29
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2008mean.nc"               !d=30
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2009mean.nc"               !d=31
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2010mean.nc"               !d=32
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2011mean.nc"               !d=33
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2012mean.nc"               !d=34
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2013mean.nc"               !d=35
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2014mean.nc"               !d=36
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2015mean.nc"               !d=37
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2016mean.nc"               !d=38
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2017mean.nc"               !d=39
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2018mean.nc"               !d=40
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2019mean.nc"               !d=41
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2020mean.nc"               !d=42
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2021mean.nc"               !d=43
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=10,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=10,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,2.8,-10,0,0.20, @SR@P7 Pressure level 650 at time 09:00
+
+
+
+set view v12
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=11,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=11,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v13
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=12,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=12,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v21
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=13,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=13,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v22
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=14,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=14,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v23
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=15,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=15,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v31
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=16,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=16,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v32
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=17,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=17,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v33
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=18,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=18,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+
+!=====================================================================================
+  ELIf `Fig eq 5` then  !Plot for 900 hPa at time 09
+!=====================================================================================
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    3,        0.18,   0.04,   0.07,     0.18,    0.04,   0.06
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1979mean.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1980mean.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1981mean.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1982mean.nc"                !d=4
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1983mean.nc"                 !d=5
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1984mean.nc"               !d=6
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1985mean.nc"               !d=7
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1986mean.nc"               !d=8
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1987mean.nc"               !d=9
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1988mean.nc"               !d=10
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1989mean.nc"               !d=11
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1990mean.nc"               !d=12
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1991mean.nc"               !d=13
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1992mean.nc"               !d=14
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1993mean.nc"               !d=15
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1994mean.nc"               !d=16
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1995mean.nc"               !d=17
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1996mean.nc"               !d=18
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1997mean.nc"               !d=19
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1998mean.nc"               !d=20
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1999mean.nc"               !d=21
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2000mean.nc"               !d=22
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2001mean.nc"               !d=23
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2002mean.nc"               !d=24
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2003mean.nc"               !d=25
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2004mean.nc"               !d=26
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2005mean.nc"               !d=27
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2006mean.nc"               !d=28
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2007mean.nc"               !d=29
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2008mean.nc"               !d=30
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2009mean.nc"               !d=31
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2010mean.nc"               !d=32
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2011mean.nc"               !d=33
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2012mean.nc"               !d=34
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2013mean.nc"               !d=35
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2014mean.nc"               !d=36
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2015mean.nc"               !d=37
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2016mean.nc"               !d=38
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2017mean.nc"               !d=39
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2018mean.nc"               !d=40
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2019mean.nc"               !d=41
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2020mean.nc"               !d=42
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2021mean.nc"               !d=43
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=19,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=19,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,2.8,-10,0,0.20, @SR@P7 Pressure level 650 at time 09:00
+
+
+
+set view v12
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=20,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=20,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v13
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=21,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=21,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v21
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=22,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=22,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v22
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=23,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=23,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v23
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=24,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=24,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v31
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=25,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=25,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v32
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=26,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=26,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v33
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=27,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=27,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+!######################################################
+
+
+!=====================================================================================
+  ELIf `Fig eq 6` then  !Plot for 900 hPa at time 9h
+!=====================================================================================
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    3,        0.18,   0.04,   0.07,     0.18,    0.04,   0.06
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1979mean.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1980mean.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1981mean.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1982mean.nc"                !d=4
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1983mean.nc"                 !d=5
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1984mean.nc"               !d=6
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1985mean.nc"               !d=7
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1986mean.nc"               !d=8
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1987mean.nc"               !d=9
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1988mean.nc"               !d=10
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1989mean.nc"               !d=11
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1990mean.nc"               !d=12
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1991mean.nc"               !d=13
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1992mean.nc"               !d=14
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1993mean.nc"               !d=15
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1994mean.nc"               !d=16
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1995mean.nc"               !d=17
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1996mean.nc"               !d=18
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1997mean.nc"               !d=19
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1998mean.nc"               !d=20
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1999mean.nc"               !d=21
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2000mean.nc"               !d=22
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2001mean.nc"               !d=23
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2002mean.nc"               !d=24
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2003mean.nc"               !d=25
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2004mean.nc"               !d=26
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2005mean.nc"               !d=27
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2006mean.nc"               !d=28
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2007mean.nc"               !d=29
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2008mean.nc"               !d=30
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2009mean.nc"               !d=31
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2010mean.nc"               !d=32
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2011mean.nc"               !d=33
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2012mean.nc"               !d=34
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2013mean.nc"               !d=35
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2014mean.nc"               !d=36
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2015mean.nc"               !d=37
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2016mean.nc"               !d=38
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2017mean.nc"               !d=39
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2018mean.nc"               !d=40
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2019mean.nc"               !d=41
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2020mean.nc"               !d=42
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2021mean.nc"               !d=43
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=28,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=28,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,2.8,-10,0,0.20, @SR@P7 Pressure level 650 at time 09:00
+
+
+
+set view v12
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=29,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=29,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v13
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=30,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=30,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v21
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=31,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=31,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v22
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=32,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=32,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v23
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=33,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=33,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v31
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=34,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=34,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v32
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=35,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=35,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v33
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=36,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=36,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+!#########################################
+!=====================================================================================
+  ELIf `Fig eq 7` then  !Plot for 900 hPa at time 9:00hr
+!=====================================================================================
+
+! go multi_view [rows],[columns], [xsize],[xstart],[xgap], [ysize],[ystart],[ygap],[prefix] 
+go multi_view    4,    3,        0.18,   0.04,   0.07,     0.18,    0.04,   0.06
+
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1979mean.nc"                !d=1
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1980mean.nc"                !d=2
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1981mean.nc"                !d=3
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1982mean.nc"                !d=4
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1983mean.nc"                 !d=5
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1984mean.nc"               !d=6
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1985mean.nc"               !d=7
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1986mean.nc"               !d=8
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1987mean.nc"               !d=9
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1988mean.nc"               !d=10
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1989mean.nc"               !d=11
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1990mean.nc"               !d=12
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1991mean.nc"               !d=13
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1992mean.nc"               !d=14
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1993mean.nc"               !d=15
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1994mean.nc"               !d=16
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1995mean.nc"               !d=17
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1996mean.nc"               !d=18
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1997mean.nc"               !d=19
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1998mean.nc"               !d=20
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/1999mean.nc"               !d=21
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2000mean.nc"               !d=22
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2001mean.nc"               !d=23
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2002mean.nc"               !d=24
+
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2003mean.nc"               !d=25
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2004mean.nc"               !d=26
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2005mean.nc"               !d=27
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2006mean.nc"               !d=28
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2007mean.nc"               !d=29
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2008mean.nc"               !d=30
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2009mean.nc"               !d=31
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2010mean.nc"               !d=32
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2011mean.nc"               !d=33
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2012mean.nc"               !d=34
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2013mean.nc"               !d=35
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2014mean.nc"               !d=36
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2015mean.nc"               !d=37
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2016mean.nc"               !d=38
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2017mean.nc"               !d=39
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2018mean.nc"               !d=40
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2019mean.nc"               !d=41
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2020mean.nc"               !d=42
+use "/home/user/Downloads/PROJECT/DATA/reucomponent/factory/2021mean.nc"               !d=43
+
+
+set view v11
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=37,x=-37:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=37,x=-37:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+label/nouser 0.5,2.8,-10,0,0.20, @SR@P7 Pressure level 650 at time 09:00
+
+
+
+set view v12
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=38,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=38,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v13
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=39,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=39,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+set view v21
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=40,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=40,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+set view v22
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=41,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=41,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v23
+
+PPL AXLABP,0,0 
+
+fill/nolab/pal=rnb2 U[d=42,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=42,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+set view v31
+
+PPL AXLABP,0,-1 
+
+fill/nolab/pal=rnb2 U[d=43,x=-30:50@ave,y=-40:40,k=1]
+contour/over/nolab u[d=43,x=-30:50@ave,y=-40:40,k=1]  
+!LABEL xpos,ypos,center,angle,size text
+!label/nouser 0.1,2.58,-10,0,0.12, @TR b
+
+
+
+
+
+
+endif
+!=================================================================================
+ exit
+!================================================================================== 
+
+
+!description: African Easterly jet montly basis year by year at pressure level 650 hpa from 1979-2021
+
+
+
+
+
+
+
+
